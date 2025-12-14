@@ -18,6 +18,35 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ results }) => {
       return index % Math.ceil(totalPoints / 50) === 0;
   });
 
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-4 rounded-xl shadow-lg border border-slate-100 ring-1 ring-black/5">
+          <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-3 pb-2 border-b border-slate-100">
+            {label % 12 === 0 && label > 0 ? `Ano ${label/12} (Mês ${label})` : `Mês ${label}`}
+          </p>
+          <div className="space-y-2">
+            {payload.map((entry: any, index: number) => (
+              <div key={index} className="flex items-center justify-between gap-6 text-sm">
+                <div className="flex items-center gap-2">
+                   <div 
+                      className="w-3 h-3 rounded-full shadow-sm" 
+                      style={{ backgroundColor: entry.color }}
+                    />
+                   <span className="text-slate-600 font-medium">{entry.name}</span>
+                </div>
+                <span className="font-bold text-slate-900 font-mono tracking-tight">
+                  {formatCurrency(entry.value)}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="space-y-8 animate-fade-in-up">
       <h2 className="text-2xl font-bold text-slate-800">Resultado</h2>
@@ -37,7 +66,7 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ results }) => {
         <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
            <div className="flex items-center gap-3 mb-2 text-slate-500">
              <PiggyBank className="w-5 h-5" />
-             <span className="text-sm font-medium">Total Investido</span>
+             <span className="text-sm font-medium">Total Aportado</span>
           </div>
           <p className="text-2xl font-bold text-slate-800">
             {formatCurrency(results.summary.totalInvested)}
@@ -91,11 +120,7 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ results }) => {
                   new Intl.NumberFormat('pt-BR', { notation: "compact", compactDisplay: "short" }).format(value)
                 }
               />
-              <Tooltip 
-                formatter={(value: number) => formatCurrency(value)}
-                labelFormatter={(label) => `Mês ${label}`}
-                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-              />
+              <Tooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36}/>
               <Area 
                 type="monotone" 
@@ -109,7 +134,7 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ results }) => {
               <Area 
                 type="monotone" 
                 dataKey="totalInvested" 
-                name="Valor Investido" 
+                name="Total Aportado" 
                 stroke="#64748b" 
                 fillOpacity={1} 
                 fill="url(#colorInvested)" 
@@ -132,7 +157,7 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({ results }) => {
               <tr>
                 <th className="px-6 py-4">Mês</th>
                 <th className="px-6 py-4">Juros (Mês)</th>
-                <th className="px-6 py-4">Total Investido</th>
+                <th className="px-6 py-4">Total Aportado</th>
                 <th className="px-6 py-4">Total Juros</th>
                 <th className="px-6 py-4">Total Acumulado</th>
               </tr>

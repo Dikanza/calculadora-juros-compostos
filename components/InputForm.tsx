@@ -49,7 +49,7 @@ const InputForm: React.FC<InputFormProps> = ({ onCalculate, onClear }) => {
           <div className="space-y-2">
             <label className="text-sm font-semibold text-slate-600">Valor inicial</label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-medium">R$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-medium">Kz</span>
               <input
                 type="number"
                 min="0"
@@ -66,7 +66,7 @@ const InputForm: React.FC<InputFormProps> = ({ onCalculate, onClear }) => {
           <div className="space-y-2">
             <label className="text-sm font-semibold text-slate-600">Valor mensal</label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-medium">R$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-medium">Kz</span>
               <input
                 type="number"
                 min="0"
