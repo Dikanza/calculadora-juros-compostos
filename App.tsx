@@ -37,7 +37,7 @@ const App: React.FC = () => {
             <div className="bg-primary-100 p-2 rounded-lg">
                <LineChart className="w-6 h-6" />
             </div>
-            <h1 className="text-xl font-extrabold tracking-tight">FinSim</h1>
+            <h1 className="text-xl font-extrabold tracking-tight">DikanzaFinSim</h1>
           </div>
           <nav>
             <a href="#guide" className="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">
@@ -86,7 +86,7 @@ const App: React.FC = () => {
             Os cálculos não consideram inflação ou impostos (IR, IOF) a menos que especificado.
           </p>
           <p className="text-xs text-slate-600">
-            &copy; {new Date().getFullYear()} FinSim. Todos os direitos reservados.
+            &copy; {new Date().getFullYear()} DikanzaFinSim. Todos os direitos reservados.
           </p>
         </div>
       </footer>
